@@ -15,15 +15,21 @@ $useruids = getUsers($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mission = $_POST['mission'];
     $winnerDeaths = intval($_POST['winner_deaths']);
-    //$winnerSuicides = intval($_POST['winner_suicides']);
+    $winnerSuicides = intval($_POST['winner_suicides']);
+    
     $forfeit = 0;
+
     $loserKills = $winnerDeaths;
     $winnerKills = 20;
     if ($loserKills >= 19) {
         $winnerKills = $loserKills + 2;
     }
 
-    reportGame($conn, $challenge['id'], $mission, $winnerKills, $forfeit, $loserKills);
+    $loserDeaths = $loserKills;
+    $loserSuicides = 0;
+
+    reportGame($conn, $challenge['id'], $mission, $winnerKills, $forfeit, $loserKills,
+        $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides);
 }
 
 $title = 'Report';

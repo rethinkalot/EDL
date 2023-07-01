@@ -4,11 +4,15 @@ function getUserId() {
 	return isset($_SESSION) && isset($_SESSION['useruid']) ? $_SESSION['useruid'] : NULL;
 }
 
-function addGame($conn, $mission, $winner, $loser, $winnerKills, $forfeit, $loserKills) {
-    $sql = "INSERT INTO games (mission, winner, loser, winnerKills, forfeit, loserKills) VALUES (?,?,?,?,?,?);";
+function addGame($conn, $mission, $winner, $loser, $winnerKills, $forfeit, $loserKills,
+    $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides) {
+    $sql = "INSERT INTO games (mission, winner, loser, winnerKills, forfeit, loserKills, " .
+        "winnerDeaths, winnerSuicides, loserDeaths, loserSuicides" .
+        ") VALUES (?,?,?,?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "sssiii", $mission, $winner, $loser, $winnerKills, $forfeit, $loserKills);
+    mysqli_stmt_bind_param($stmt, "sssiiiiiii", $mission, $winner, $loser, $winnerKills, $forfeit, $loserKills,
+        $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
@@ -291,7 +295,8 @@ function confirmGame($conn, $challengeId) {
             $winner = $data['challenger']; // reporter=challenged, other=challenger
         $loser = $data['reporter'];
 
-		addGame($conn, $data['mission'], $winner, $loser, $data['winnerKills'], $data['forfeit'], $data['loserKills']);
+		addGame($conn, $data['mission'], $winner, $loser, $data['winnerKills'], $data['forfeit'], $data['loserKills'],
+		    $data['winnerDeaths'], $data['winnerSuicides'], $data['loserDeaths'], $data['loserSuicides']);
 		setChallengeStatus($conn, $data['id'], 'confirmed');
 		if ($data['forfeit']) {
 			updateStats($conn, $winner, array('forfeits' => 1));
@@ -299,9 +304,9 @@ function confirmGame($conn, $challengeId) {
 		} else {
 			updateRanks($conn, $winner, $loser);
 			updateStats($conn, $winner, array('games' => 1, 'wins' => 1, 'kills' => $data['winnerKills'],
-				'deaths' => $data['loserKills']));
+				'deaths' => $data['loserKills'], 'suicides' => $data['winnerSuicides']));
 			updateStats($conn, $loser, array('games' => 1, 'losses' => 1, 'kills' => $data['loserKills'],
-				'deaths' => $data['winnerKills']));
+				'deaths' => $data['winnerKills'], 'suicides' => $data['loserSuicides']));
 			updateStreaks($conn, $winner, true);
 			updateStreaks($conn, $loser, false);
 		}
@@ -313,17 +318,24 @@ function confirmGame($conn, $challengeId) {
         notifyNewGame($conn, $data['mission'], $winner, $loser, $data['winnerKills'], $data['forfeit'], $data['loserKills']);
 }
 
-function reportGame($conn, $challengeId, $mission, $winnerKills, $forfeit, $loserKills) {
-	$reporter = getUserId();
-	$status = "reported";
+function reportGame($conn, $challengeId, $mission, $winnerKills, $forfeit, $loserKills,
+    $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides) {
+
+    $reporter = getUserId();
+    $status = "reported";
 
     // Add reported data to the existing challenge row
 
-	$query = "UPDATE challenges SET status = ?, reporter = ?, mission = ?, winnerKills = ?, forfeit = ?, loserKills = ? WHERE id = ?";
+    $query = "UPDATE challenges SET status = ?, reporter = ?, mission = ?, winnerKills = ?, forfeit = ?, loserKills = ?, " .
+        "winnerDeaths, winnerSuicides, loserDeaths, loserSuicides" .
+        " WHERE id = ?";
 
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
-    mysqli_stmt_bind_param($stmt, "sssiiii", $status, $reporter, $mission, $winnerKills, $forfeit, $loserKills, $challengeId);
+    mysqli_stmt_bind_param($stmt, "sssiiiiiiii", $status, $reporter, $mission,
+        $winnerKills, $forfeit, $loserKills,
+        $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides,
+        $challengeId);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
