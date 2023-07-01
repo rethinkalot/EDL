@@ -15,7 +15,7 @@ $useruids = getUsers($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mission = $_POST['mission'];
     $winnerDeaths = intval($_POST['winner_deaths']);
-    $winnerSuicides = intval($_POST['winner_suicides']);
+    $winnerSuicides = 0; //intval($_POST['winner_suicides']);
     
     $forfeit = 0;
 
@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     reportGame($conn, $challenge['id'], $mission, $winnerKills, $forfeit, $loserKills,
         $winnerDeaths, $winnerSuicides, $loserDeaths, $loserSuicides);
+    $success = 1;
 }
 
 $title = 'Report';
@@ -64,9 +65,9 @@ include 'Includes/header.inc.php';
         <label for="winner_deaths">Winner Deaths</label>
         <input type="number" name="winner_deaths" id="deaths" required>
         <br>
-        <label for="winner_suicides">Winner Suicides?</label>
+        <!-- <label for="winner_suicides">Winner Suicides?</label>
         <input type="number" name="winner_suicides" id="winner_suicides" required>
-        <br>
+        <br> -->
         <button type="submit">Report</button>
         </form>
     <?php endif; ?>
