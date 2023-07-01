@@ -59,14 +59,14 @@ include 'Includes/header.inc.php';
         <form method="POST" action="report.php">
         <label for="mission">Winner Reports</label>
         <label for="mission">Mission:</label>
-        <input type="text" name="mission" id="mission" reqired:>
+        <input type="text" name="mission" id="mission" required>
         <br>
         <label for="winner_deaths">Winner Deaths</label>
         <input type="number" name="winner_deaths" id="deaths" required>
         <br>
-        <!--<label for="winner_suicides">Winner Suicides?</label>
+        <label for="winner_suicides">Winner Suicides?</label>
         <input type="number" name="winner_suicides" id="winner_suicides" required>
-        <br>-->
+        <br>
         <button type="submit">Report</button>
         </form>
     <?php endif; ?>

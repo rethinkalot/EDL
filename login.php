@@ -51,14 +51,22 @@ include 'Includes/header.inc.php';
             <input type="submit" name="submit" value="Login">
 
         </form>
+        
+
         <?php
         // Display error message if set
         if (isset($error_message)) {
             echo '<p class="error-message">' . $error_message . '</p>';
         }
-		?>
-            <p><a href="signup.php">Sign Up</a></p>
-            <?php
+	?>
+        
+        <p><a href="signup.php">Sign Up</a></p>
+        
+        <p><br></p>
+        
+        <p><a href="reset_password_request.php">Reset Password</a></p>
+        
+        <?php
     
     }
 

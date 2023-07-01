@@ -327,7 +327,7 @@ function reportGame($conn, $challengeId, $mission, $winnerKills, $forfeit, $lose
     // Add reported data to the existing challenge row
 
     $query = "UPDATE challenges SET status = ?, reporter = ?, mission = ?, winnerKills = ?, forfeit = ?, loserKills = ?, " .
-        "winnerDeaths, winnerSuicides, loserDeaths, loserSuicides" .
+        "winnerDeaths = ?, winnerSuicides = ?, loserDeaths = ?, loserSuicides = ?" .
         " WHERE id = ?";
 
     $stmt = mysqli_stmt_init($conn);
