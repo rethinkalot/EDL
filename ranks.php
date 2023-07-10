@@ -5,6 +5,10 @@ require 'Includes/functions.inc.php';
 $query = "SELECT player, rank, wins, losses, kills, deaths, streaks FROM ranks ORDER BY rank";
 $rankRows = mysqli_query($conn, $query);
 
+$query = "SELECT usersUid FROM users LEFT JOIN ranks ON ranks.player = users.usersUid" .
+  " WHERE ranks.player IS NULL";
+$unranked = mysqli_query($conn, $query);
+
 $title = 'Ranks';
 include 'Includes/header.inc.php';
 ?>

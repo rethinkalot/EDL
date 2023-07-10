@@ -21,10 +21,12 @@ if (!$challenge && isset($_POST["challenged"])) {
     if (!empty($_POST["challenged"]) && !empty($_POST["type"])) {
         $challenger = getUserId();
         $challenged = $_POST["challenged"];
-        createChallenge($conn, $challenged, $_POST["type"]);
+        $gameplayed = $_POST["gameplayed"];
+        $type = $_POST["type"];
+        createChallenge($conn, $challenged, $gameplayed, $type);
 
-        // Send Discord webhook notification
-        $webhookUrl = 'https://discord.com/api/webhooks/1124540937993998346/rjQ-QWgLSqHOLR6tEQmwHpCqe2rj1cfdP6bP9pHfEta-wUmvK8ug74xkUmJTiwvXt1Gl';
+// Send Discord webhook notification for challenges
+        $webhookUrl = 'https://discord.com/api/webhooks/1124540114169770075/4HGcYrEFuSdldR5E_3ptLibSbf2IxX3yWKgl8etnFE1YdGrIebnUpt1hojEh-5atl00j';
 		$linkUrl = "https://elitedescentladder.ddns.net";
 		$linkText = "TheEDL";
         $message = "$challenger has challenged $challenged to a Match!\n$challenged, please Login to Accept.";
@@ -36,15 +38,15 @@ if (!$challenge && isset($_POST["challenged"])) {
             'content' => $message,
             'embeds' => $embeds
         );
-        
+
         //print_r($data); exit;
-        
+
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json\r\n",
                 'method'  => 'POST',
                 'content' => json_encode($data)
-            )
+            ),
         );
 
         $context  = stream_context_create($options);
@@ -52,7 +54,7 @@ if (!$challenge && isset($_POST["challenged"])) {
 
         if ($result === false) {
             $error_message = "Failed to send Discord webhook notification.";
-        }
+}
 
         // Redirect to the accept.php page
         header("Location: accept.php");
@@ -78,6 +80,20 @@ if (!$challenge && isset($_POST["challenged"])) {
                 <option value="<?php echo $useruid; ?>"><?php echo $useruid; ?></option>
             <?php } ?>
         </select>
+                            <select name="gameplayed" id="gameplayed">
+												    <option selected="">
+						    Descent						    </option>
+						    						    <option select="">
+						    Descent2						    </option>
+						    						    <option select="">
+						    Descent3						    </option>
+						    						    <option select="">
+						    Ascentroid						    </option>
+						    						    <option select="">
+						    Overload						    </option>
+	       				    					</select>
+                            
+       
 
         <style>
             input[type="radio"]~.info {

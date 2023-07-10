@@ -1,3 +1,8 @@
 log/
 myadmin/
 *~
+Css/*.php
+Css/*/
+Css/favicon.png
+Css/.*
+*.zip

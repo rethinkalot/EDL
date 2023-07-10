@@ -61,6 +61,8 @@ if (isset($_SESSION['useruid'])) {
         <li class="navitem"><a href="challenge.php" <?php if($currentURL == "/challenge.php") echo 'style="background-color: #000;"'; ?>>Challenge</a></li>
         <li class="navitem"><a href="accept.php" <?php if($currentURL == "/accept.php") echo 'style="background-color: #000;"'; ?>>Accept</a></li>
         <li class="navitem"><a href="report.php" <?php if($currentURL == "/report.php") echo 'style="background-color: #000;"'; ?>>Report</a></li>
+        <li class="navitem"><a href="games.php" <?php if($currentURL == "/games.php") echo 'style="background-color: #000;"'; ?>>Games</a></li>
+        <li class="navitem"><a href="editprofile.php" <?php if($currentURL == "/editprofile.php") echo 'style="background-color: #000;"'; ?>>EditProfile</a></li>
         <li class="navitem"><a href="login.php" <?php if($currentURL == "/rank.php") echo 'style="background-color: #000;"'; ?>>Login</a></li>
         <li class="navitem"><a href="Login.php">Logout</a>
     </ul>

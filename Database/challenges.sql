@@ -5,9 +5,13 @@ create table challenges (
     type varchar(255),
     status varchar(255),
     reporter varchar(255),
+    gameplayed varchar(255),
     mission varchar(255),
-    winnerKills int,
-    loserKills int,
-    forfeit int,
+    winnerKills int(11),
+    loserKills int (11),
+    winnerDeaths int (11),
+    winnerSuicides int(11),
+    loserDeaths int(11),
+    loserSuicides int(11),
     primary key (id)
 );

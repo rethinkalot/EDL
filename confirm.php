@@ -49,12 +49,12 @@ if ($challenge && $challenge['reporter'] != getUserId() && isset($_POST["confirm
     <?php
     } else {
     ?>
-    <p><b>Reported game</b></p>
+    <p><b>Reported Game</b></p>
     <table>
+    <tr><th>GamePlayed</th><td><?php echo htmlspecialchars($challenge['gameplayed']); ?></td></th>
     <tr><th>Mission</th><td><?php echo htmlspecialchars($challenge['mission']); ?></td></th>
     <tr><th>Winner Kills</th><td><?php echo $challenge['winnerKills']; ?></td></th>
-    <tr><th>Forfeit</th><td><?php echo $challenge['forfeit'] ? "Yes" : "No"; ?></td></th>
-    <tr><th>Loser Kills</th><td><?php echo $challenge['loserKills']; ?></td></th>
+     <tr><th>Loser Kills</th><td><?php echo $challenge['loserKills']; ?></td></th>
     </table>
 
     <form method="POST">

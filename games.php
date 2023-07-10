@@ -5,7 +5,7 @@ session_start();
 require 'Includes/dbh.inc.php';
 require 'Includes/functions.inc.php';
 
-$query = "SELECT time, mission, winner, loser, winnerKills, forfeit, loserKills FROM games";
+$query = "SELECT time, gameplayed, mission, winner, loser, winnerKills, winnerDeaths, winnerSuicides, loserKills, loserDeaths, loserSuicides FROM games";
 $query .= " ORDER BY time DESC";
 $games = mysqli_query($conn, $query);
 
@@ -24,19 +24,29 @@ td, th { width:25% }
     <th>Winner</th>
     <th>Score</th>
     <th>Loser</th>
+    <th>GamePlayed</th>
 	  <th>Mission</th>
+    
+    
+    
 <?php
 foreach ($games as $game) {
     $winner = $game['winner'];
     $winnerKills= $game['winnerKills'];
     $loserKills = $game['loserKills'];
     $loser = $game['loser'];
+    $gameplayed = $game['gameplayed'];
     $mission = $game['mission'];
+    
+   
+
+
   ?>
   <tr>
     <td><?php echo htmlspecialchars($winner); ?></td>
     <td><?php echo htmlspecialchars($winnerKills . '/' . $loserKills); ?></td>
-    <td><?php echo htmlspecialchars($loser); ?></td>
+    <td><?php echo htmlspecialchars($loser); ?></td>    
+    <td><?php echo htmlspecialchars($gameplayed); ?></td>
     <td><?php echo htmlspecialchars($mission); ?></td>
   </tr>
 <?php

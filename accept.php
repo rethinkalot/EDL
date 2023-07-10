@@ -20,7 +20,7 @@ if ($challenge && isset($_POST["accept"])) {
     setChallengeStatus($conn, $challenge['id'], $status);
 
     // Send message to Discord webhook
-    $discordWebhookUrl = 'https://discord.com/api/webhooks/1124540937993998346/rjQ-QWgLSqHOLR6tEQmwHpCqe2rj1cfdP6bP9pHfEta-wUmvK8ug74xkUmJTiwvXt1Gl';
+    $discordWebhookUrl = 'https://discord.com/api/webhooks/1124540114169770075/4HGcYrEFuSdldR5E_3ptLibSbf2IxX3yWKgl8etnFE1YdGrIebnUpt1hojEh-5atl00j';
     $message = $challenge['challenged'] . ' has accepted the match!';
     $data = array('content' => $message);
     $options = array(
@@ -46,8 +46,8 @@ if ($challenge && isset($_POST["accept"])) {
     setChallengeStatus($conn, $challenge['id'], $status);
 
     // Send message to Discord webhook
-    $discordWebhookUrl = 'https://discord.com/api/webhooks/1124540937993998346/rjQ-QWgLSqHOLR6tEQmwHpCqe2rj1cfdP6bP9pHfEta-wUmvK8ug74xkUmJTiwvXt1Gl';
-    $message = $challenge['challenged'] . ' has declined the match!';
+    $discordWebhookUrl = 'https://discord.com/api/webhooks/1124540114169770075/4HGcYrEFuSdldR5E_3ptLibSbf2IxX3yWKgl8etnFE1YdGrIebnUpt1hojEh-5atl00j';
+    $message = $challenge['challenged' | 'challenger'] . ' has declined the match!';
     $data = array('content' => $message);
     $options = array(
         'http' => array(
@@ -85,9 +85,9 @@ if ($challenge && isset($_POST["accept"])) {
     } else if ($challenge['challenger'] == getUserId()) { // player is the challenger
     ?>
 
-    <p>Your challenge has been sent. Would you like to Decline?</p>
+    <p>Your challenge has been sent. Would you like to Cancel?</p>
     <form method="POST">
-    <input type="submit" name="decline" value="Decline">
+    <input type="submit" name="decline" value="Cancel">
     </form>
 
     <?php
