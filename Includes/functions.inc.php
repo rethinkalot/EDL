@@ -271,11 +271,9 @@ function confirmGame($conn, $challengeId) {
          addGame($conn, $data['gameplayed'], $data['mission'], $winner, $loser, $data['winnerKills'], $data['loserKills'],
              $data['winnerDeaths'], $data['winnerSuicides'], $data['loserDeaths'], $data['loserSuicides']);
             setChallengeStatus($conn, $data['id'], 'confirmed');
-                updateStats($conn, $winner, array('games' => 1, 'wins' => 1, 'kills' => $data['winnerKills'],
-                'deaths' => $data['loserKills'], 'suicides' => $data['winnerSuicides']));{
-
-    }
-
+            updateRanks($conn, $winner, $loser);
+            updateStats($conn, $winner, array('games' => 1, 'wins' => 1, 'kills' => $data['winnerKills'],
+                'deaths' => $data['loserKills'], 'suicides' => $data['winnerSuicides']));
             updateStats($conn, $loser, array('games' => 1, 'losses' => 1, 'kills' => $data['loserKills'],
                 'deaths' => $data['winnerKills'], 'suicides' => $data['loserSuicides']));
             updateStreaks($conn, $winner, true);
