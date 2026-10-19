@@ -1,6 +1,7 @@
 
 
-    <div class="container">
+    <div class="container"> 
+
         <?php 
         // Check if signup form submitted
         if (isset($_POST["submit"])) {
@@ -20,6 +21,7 @@
             }
         }
         ?>
+      
 
         <form method="POST" action="signup.php">
 

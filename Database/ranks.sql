@@ -6,6 +6,7 @@ create table ranks (
     kills int default 0,
     deaths int default 0,
     streaks int default 0,
-    suicides int default 0,
+    homevshome_wins int default 0,
+    homevshome_games int default 0,
     primary key (id)
 );

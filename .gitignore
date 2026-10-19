@@ -6,3 +6,15 @@ Css/*/
 Css/favicon.png
 Css/.*
 *.zip
+
+*.orig
+*.~
+.htaccess
+phpinfo.php
+Database/
+.vs/
+.aider.*
+challenge.php~
+wingman.php~
+profile.php~
+acceptdontwork.php~

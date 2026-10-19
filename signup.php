@@ -3,7 +3,7 @@ require 'Includes/dbh.inc.php';
 require 'Includes/functions.inc.php';
 $public = true;
 $title = 'SignUp';
-include 'Includes/header.inc.php'
+include 'Includes/header.inc.php';
 ?>
     <div class="container">
         <?php 
@@ -40,8 +40,12 @@ include 'Includes/header.inc.php'
         <?php
         if (isset($success)) {
             ?>
-            <p>Welcome to the EDL.</p>
-            <p><a href="login.php">Login</a></p>
+            <div class="namesize">
+                <br />
+                WELCOME, <?php echo strtoupper(htmlspecialchars($username)); ?>!
+                <p>Welcome to the EDL.</p>
+                <p><a href="login.php">Click here to Login</a></p>
+            </div>
             <?php
         } else {
            ?>

@@ -2,12 +2,12 @@
 <?php
 
 // Send Discord webhook notification for challenges
-        $webhookUrl = 'https://discord.com/api/webhooks/1124540114169770075/4HGcYrEFuSdldR5E_3ptLibSbf2IxX3yWKgl8etnFE1YdGrIebnUpt1hojEh-5atl00j';
-		$linkUrl = "https://elitedescentladder.ddns.net";
+        $webhookUrl = 'YOUR_WEBHOOK_URL_HERE';
+		$linkUrl = "https://edl.ascentroid.com";
 		$linkText = "TheEDL";
         $message = "$challenger has challenged $challenged to a Match!\n$challenged, please Login to Accept.";
         $embeds = array(
-            array( 'title' => 'Accept', 'url' => 'https://elitedescentladder.ddns.net/accept.php')
+            array( 'title' => 'Accept', 'url' => 'https://edl.ascentroid.com/accept.php')
             );
 
         $data = array(
@@ -36,7 +36,7 @@
 
 
 // Send message to Discord webhook
-        $discordWebhookUrl = 'https://discord.com/api/webhooks/1124540114169770075/4HGcYrEFuSdldR5E_3ptLibSbf2IxX3yWKgl8etnFE1YdGrIebnUpt1hojEh-5atl00j';
+        $discordWebhookUrl = 'YOUR_WEBHOOK_URL_HERE';
         $message = $challenge['challenged'] . ' has declined the match!';
         $data = array('content' => $message);
         $options = array(

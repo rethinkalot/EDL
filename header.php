@@ -23,7 +23,7 @@ session_start();
 
     .navbar {
   position: fixed;
-  top: 0px;
+  top: 360px;
   left: 50%;
   transform: translateX(-50%);
 }

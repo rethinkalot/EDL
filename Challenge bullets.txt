@@ -1,0 +1,74 @@
+<label class="radio"><input type="radio" name="type" value="5050roll">50/50 Flip to Pick
+            <div class="info">
+                50/50 Flip to Pick:<br>(Ladder option not functional yet)
+                Ranked Match First to 20 Win by 2.<br>
+                Flip to decide who picks from opposing player's listed homes.
+            </div>
+        </label>
+
+        <label class="radio"><input type="radio" name="type" value="5050roll">Random
+            <div class="info">
+                Random:<br>
+                After the match is accepted, the mission<br>
+                to be played is selected at random out of
+                both player's listed homes.<br>                
+                Your challenge and acceptance of 'Random'
+                demands you both honor the random selection
+                without question.  1st to 20 win by 2.
+            </div>
+        </label>
+
+        <label class="radio"><input type="radio" name="type" value="homevshome">Home Vs Home
+            <div class="info">
+                Home Vs Home:<br>
+                Our challenger gets to pick their own home first.<br>
+                beware after the first 20 kills you switch<br>
+                to the enemy pilots home territory.<br>                
+                All kills from the 1st game carry over to the 2nd.
+                Good luck on your way to getting 
+                40 total kills in order to advance in rank.
+
+                PreSelect your home list via the EditProfile tab.
+                
+                 time at the first to 20. for the 1st First to 40 Kills total.
+                Challenger  gets played first.
+                Combined highest KDR decides the winner who ranks.
+            </div>
+        </label>7739091129
+
+    <label class="radio"><input type="radio" name="type" value="usemarker">Will you be using a Marker?
+            <div class="info">
+                Marker Challenge:<br>
+                (Ladder option not functional yet)
+        
+                Must be rank 7 or higher with a Marker
+                in order to issue a non declinable 
+                challenge to the #1Ranked player.
+            
+                Challenger picks one map from
+                the #1 player's listed homes.
+            </div>
+        </label>
+		
+		
+		
+		
+		Send a message to Discord
+$discordWebhookUrl = 'https://discord.com/api/webhooks/1283836786887495710/BFu4zWVrvEqlxrcvRYz7VSDSdUly8BAgv9acnZyTy7P5HVgvCZOu7lKYHBmR8sWkP_z-'; {
+    
+    
+    $message = "Match Confirmed! \n$winner - $winnerKills\n$loser - $loserKills\nMission - $mission\nMission - $mission2\nMission - $gamePlayed";
+    $data = array('content' => $message);
+    $options = array(
+        'http' => array(
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => json_encode($data),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($discordWebhookUrl, false, $context);
+
+    if ($result === false) {
+        // Handle error here
+    }
